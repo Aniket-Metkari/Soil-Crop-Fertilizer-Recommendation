@@ -1,0 +1,38 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.CropRecommender {
+    background-color: #ffffff;
+    min-width: 100vw;
+    min-height: 100vh;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    /* margin-top: 0px; */
+    padding-top: 3rem;
+    padding-bottom: 100px;
+}
+
+.cropForm {
+    background-color: white;
+    width: 50vw;
+    margin: auto;
+    padding: 2%;
+    border: 2px solid green;
+    border-radius: 7%;
+    position: inherit;
+}
+
+.heading {
+    margin-bottom: 2%;
+    color: green;
+}
+
+#location {
+    align-self: flex-start;
+}
+
+#state-select, #city-select {
+    text-align: start;
+}
