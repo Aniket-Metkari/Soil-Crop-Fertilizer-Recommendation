@@ -45,7 +45,7 @@ def fertilizerRecommender():
     
     features = [[int(temperature),int(humidity),int(moisture),int(soiltype),int(croptype),int(N),int(K),int(P)]]
     # finalfeatures = np.array(features)
-    print("final features- ",fertilizer_scaler.transform(features))
+    # print("final features- ",fertilizer_scaler.transform(features))
     
     # label = fertilizer_recommendation_model_old.predict(finalfeatures)
     predictions = fertilizer_recommendation_model.predict(fertilizer_scaler.transform(features))

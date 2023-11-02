@@ -1,4 +1,4 @@
-import { Button, Paper } from "@mui/material";
+import { Paper } from "@mui/material";
 import React, { useEffect } from "react";
 import Carousel from "react-material-ui-carousel";
 
@@ -13,8 +13,7 @@ const CarouselComponent = () => {
     {
       image: "/c2.jpg",
       heading: "Easy To Use",
-      description:
-        "Get All Recommendation using Our Website",
+      description: "Get All Recommendation using Our Website",
     },
     {
       image: "/c3.png",
@@ -109,7 +108,13 @@ const CarouselComponent = () => {
                     alignItems: "center",
                   }}
                 >
-                  <h2 style={{ color: "white", textAlign: "center", marginBottom: "20px" }}>
+                  <h2
+                    style={{
+                      color: "white",
+                      textAlign: "center",
+                      marginBottom: "20px",
+                    }}
+                  >
                     {item.heading}
                   </h2>
                   <p style={{ color: "white", textAlign: "center" }}>
