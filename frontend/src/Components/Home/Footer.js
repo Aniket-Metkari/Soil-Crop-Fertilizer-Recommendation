@@ -1,5 +1,5 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import React from "react";
 import "./Footer.css";
 
 const Footer = () => {

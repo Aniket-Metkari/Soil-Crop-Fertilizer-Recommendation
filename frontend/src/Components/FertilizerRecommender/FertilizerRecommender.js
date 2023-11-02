@@ -15,11 +15,8 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  SelectChangeEvent,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import FertilizerImage from "../images/fertilizer.png";
-
 import "./FertilizerRecommender.css";
 
 const URL = "http://127.0.0.1:5000/fertilizer";
@@ -51,7 +48,6 @@ export default function FertilizerRecommender() {
   let localLan = localStorage.getItem("i18nextLng");
 
   const soilTypes = [t("Black"), t("Clayey"), t("Loamy"), t("Red"), t("Sandy")];
-  // const cropTypes = ["Barley","Cotton","Ground Nuts","Maize","Millets","Oil seeds","Paddy","Pulses","Sugarcane","Tobacco", "Wheat"];
   const cropTypes = [
     t("Barley"),
     t("Cotton"),
@@ -79,29 +75,6 @@ export default function FertilizerRecommender() {
     setStates(State.getStatesOfCountry("IN"));
   }, [country]);
 
-  // converting the states in english to required language
-  useEffect(() => {
-    let localState = [];
-    if (localLan !== null || localLan !== "") {
-      states.map(async (state) => {
-        const localStateValue = await translatorFunc(
-          "en",
-          localLan,
-          state.name
-        );
-        localState.push({
-          ...state,
-          name:
-            Array.isArray(localStateValue) && !localStateValue.length
-              ? state.name
-              : localStateValue,
-        });
-      });
-    }
-    setLangStates(localState);
-    // console.log(localState);
-  }, [states]);
-
   useEffect(() => {
     if (data) fertilizerRecommend(formElements);
   }, [data]);
@@ -110,28 +83,7 @@ export default function FertilizerRecommender() {
     console.warn(err, " Mainly due to Internet Issue! ");
   };
 
-  async function translatorFunc(src, tar, text) {
-    var url =
-      "https://translate.googleapis.com/translate_a/single?client=gtx&sl=" +
-      src +
-      "&tl=" +
-      tar +
-      "&dt=t&q=" +
-      encodeURI(text);
-    try {
-      const res = await fetch(url).catch(handleError);
-      const json = await res.json().catch(handleError);
-      const value = json[0][0][0];
-      return value;
-    } catch {
-      console.warn("Internet Issue");
-      return [];
-    }
-  }
-
   const fertilizerRecommend = (fromElements) => {
-    // const fromElements = event.target.elements;
-    // console.log("Data - ",data);
     const formInput = {
       N: Number(fromElements["N"].value),
       P: Number(fromElements["P"].value),
@@ -155,13 +107,7 @@ export default function FertilizerRecommender() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!chooseStateCity) {
-      getGeoLocation();
-    }
-
     const rtvalue = await fetchTempertureAndHumidity();
-    // console.log("rt-",rtvalue);
-
     setFormElements(event.target.elements);
 
     setData(() => {
@@ -170,13 +116,7 @@ export default function FertilizerRecommender() {
   };
 
   const handleLocationInfoChange = (event) => {
-    if (event.target.value === "geolocation") {
-      setChooseStateCity(false);
-    } else {
-      setChooseStateCity(true);
-    }
-
-    // console.log(event.target.value)
+    setChooseStateCity(true);
   };
 
   const getAvgTemperatureAndHumidity = async () => {
@@ -231,28 +171,10 @@ export default function FertilizerRecommender() {
     maximumAge: Infinity,
   };
 
-  const successCallback = (position) => {
-    updateState(position.coords.latitude, position.coords.longitude);
-  };
-
-  const errorCallback = (error) => {
-    console.log(error);
-  };
-
-  const getGeoLocation = () => {
-    console.log("Getting geo-location...");
-    navigator.geolocation.getCurrentPosition(
-      successCallback,
-      errorCallback,
-      options
-    );
-  };
-
   const handleStateChange = (event) => {
     setState(event.target.value);
-    // console.log(" state changed ");
     let checkStates = [];
-    LangStates.length != 0
+    LangStates.length !== 0
       ? (checkStates = LangStates)
       : (checkStates = states);
 
@@ -286,9 +208,7 @@ export default function FertilizerRecommender() {
       >
         <div>
           <center>
-            <h1 className="Fheading">
-              {t("Fertilizer Recommender")}{" "}
-            </h1>
+            <h1 className="Fheading">{t("Fertilizer Recommender")} </h1>
             <div class="row">
               <TextField
                 required
@@ -344,8 +264,6 @@ export default function FertilizerRecommender() {
               </RadioGroup>
             </FormControl>
 
-        
-
             {chooseStateCity && (
               <div class="row">
                 <FormControl sx={{ m: 1, width: "25ch" }}>
@@ -357,7 +275,7 @@ export default function FertilizerRecommender() {
                     label="State"
                     onChange={handleStateChange}
                   >
-                    {LangStates.length != 0
+                    {LangStates.length !== 0
                       ? LangStates.map((s) => {
                           return (
                             <MenuItem value={s.name} key={s.name}>
@@ -385,7 +303,7 @@ export default function FertilizerRecommender() {
                       label="City"
                       onChange={handleCityChange}
                     >
-                      {LangCities.length != 0
+                      {LangCities.length !== 0
                         ? LangCities.map((c) => {
                             // console.log(c);
                             return (
@@ -455,8 +373,6 @@ export default function FertilizerRecommender() {
               </FormControl>
             </div>
 
-            
-
             <Button
               className="FsubmitBtn"
               variant="contained"
@@ -469,7 +385,7 @@ export default function FertilizerRecommender() {
         </div>
         <br />
         <div>
-          {fertilizer != -1 && (
+          {fertilizer !== -1 && (
             <Alert severity="success">
               {t("Recommended Fertilizer is")} <b>{fertilizers[fertilizer]}</b>
             </Alert>

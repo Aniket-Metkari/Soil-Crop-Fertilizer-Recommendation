@@ -1,15 +1,11 @@
 import {
   Box,
   Button,
-  FormControl,
   Grid,
-  IconButton,
   List,
   ListItem,
   ListItemText,
   Modal,
-  TextField,
-  Tooltip,
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
@@ -17,23 +13,9 @@ import { useNavigate } from "react-router-dom";
 
 const Guide = ({ guideOpen, setGuideOpen }) => {
   const [open, setOpen] = React.useState(guideOpen);
-  const [newName, setNewName] = React.useState("");
-  const [newDescription, setNewDescription] = React.useState("");
+  const [newName, setNewName] = React.useState(null);
 
-  const instructions = [
-    "You can select language from the bottom (see image below for reference)",
-    "Select the one which you want to predict",
-    "Fill the required values mentioned in the form",
-    "You can select location by either geolocation (automatic way) or manually enter state and district",
-    "You can get your soil tested from the nearest NPK centers !!!",
-    "Check your nearest NPK centers",
-    "cancel",
-    "Geolocation",
-    "Manual",
-    "Guide to use Crop and Fertilizer Recommender",
-    "Click here to get Help",
-    "Help",
-  ];
+  const instructions = [];
 
   const [localInstructions, setLocalInstructions] = useState([]);
 
@@ -105,7 +87,6 @@ const Guide = ({ guideOpen, setGuideOpen }) => {
 
   return (
     <div>
-      
       <Modal open={open} onClose={handleClose} sx={{ overflow: "hidden" }}>
         <Box
           sx={{
@@ -137,42 +118,36 @@ const Guide = ({ guideOpen, setGuideOpen }) => {
                 ? localInstructions[9]
                 : instructions[9]}{" "}
             </h2>
-            <br/><br/>
+            <br />
+            <br />
           </center>
           <div style={{ overflow: "auto" }}>
             <List>
               <ListItem disablePadding>
-                
                 <ListItemText
                   primary={
-                    <Typography style={{fontSize:'18px',fontWeight:900}}>
-
-                      {
-                      localInstructions[0]
+                    <Typography style={{ fontSize: "18px", fontWeight: 900 }}>
+                      {localInstructions[0]
                         ? localInstructions[0]
-                        : instructions[0]
-                        }
+                        : instructions[0]}
                     </Typography>
                   }
-                  style={{fontSize:'100px'}}
+                  style={{ fontSize: "100px" }}
                 />
               </ListItem>
               <br />
               <center>
-
-              <img src="/img.jpg" alt="language highlighter" height="350" />
+                <img src="/img.jpg" alt="language highlighter" height="350" />
               </center>
-              <br/><br/>
+              <br />
+              <br />
               <ListItem disablePadding>
                 <ListItemText
                   primary={
-                    <Typography style={{fontSize:'18px',fontWeight:900}}>
-
-                      {
-                      localInstructions[1]
+                    <Typography style={{ fontSize: "18px", fontWeight: 900 }}>
+                      {localInstructions[1]
                         ? localInstructions[1]
-                        : instructions[1]
-                    }
+                        : instructions[1]}
                     </Typography>
                   }
                 />
@@ -180,44 +155,38 @@ const Guide = ({ guideOpen, setGuideOpen }) => {
               <br />
               <br />
               <center>
-                
-              <img
-                src="/img2.jpg"
-                alt="crop and fertilizer recommender"
-                height="350"
-              />
+                <img
+                  src="/img2.jpg"
+                  alt="crop and fertilizer recommender"
+                  height="350"
+                />
               </center>
-              <br/><br/>
+              <br />
+              <br />
               <ListItem disablePadding>
                 <ListItemText
                   primary={
-                    <Typography style={{fontSize:'18px',fontWeight:900}}>
-
-                      {
-                      localInstructions[2]
+                    <Typography style={{ fontSize: "18px", fontWeight: 900 }}>
+                      {localInstructions[2]
                         ? localInstructions[2]
-                        : instructions[2]
-                    }
+                        : instructions[2]}
                     </Typography>
                   }
                 />
               </ListItem>
               <center>
-              <br />
-              <img src="/img3.jpg" alt="Crop/image" height={500}/>
+                <br />
+                <img src="/img3.jpg" alt="Crop/image" height={500} />
               </center>
               <br />
               <br />
               <ListItem disablePadding>
                 <ListItemText
                   primary={
-                    <Typography style={{fontSize:'18px',fontWeight:900}}>
-
-                      {
-                      localInstructions[3]
+                    <Typography style={{ fontSize: "18px", fontWeight: 900 }}>
+                      {localInstructions[3]
                         ? localInstructions[3]
-                        : instructions[3]
-                    }
+                        : instructions[3]}
                     </Typography>
                   }
                 >
@@ -230,10 +199,9 @@ const Guide = ({ guideOpen, setGuideOpen }) => {
                 <img src="/img4.jpg" alt="geolocation" height={150} />
                 <center>
                   <b>
-
-                  {localInstructions[7]
-                    ? localInstructions[7]
-                    : instructions[7]}
+                    {localInstructions[7]
+                      ? localInstructions[7]
+                      : instructions[7]}
                   </b>
                 </center>
               </Grid>
@@ -241,29 +209,28 @@ const Guide = ({ guideOpen, setGuideOpen }) => {
                 <img src="/img5.jpg" alt="manual" height={200} />
                 <center>
                   <b>
-
-                  {localInstructions[8]
-                    ? localInstructions[8]
-                    : instructions[8]}{" "}
+                    {localInstructions[8]
+                      ? localInstructions[8]
+                      : instructions[8]}{" "}
                   </b>
                 </center>
               </Grid>
             </Grid>
             <br />
             <br />
-              <center>
-            <Typography color="error">
-              {" "}
-              {localInstructions[4]
-                ? localInstructions[4]
-                : instructions[4]}{" "}
-            </Typography>
-            <br />
+            <center>
+              <Typography color="error">
+                {" "}
+                {localInstructions[4]
+                  ? localInstructions[4]
+                  : instructions[4]}{" "}
+              </Typography>
+              <br />
 
-            <a href="https://www.napanta.com/soil-testing-laboratory/andhra-pradesh">
-              {" "}
-              {localInstructions[5] ? localInstructions[5] : instructions[5]}
-            </a>
+              <a href="https://www.napanta.com/soil-testing-laboratory/andhra-pradesh">
+                {" "}
+                {localInstructions[5] ? localInstructions[5] : instructions[5]}
+              </a>
             </center>
             <br />
             <div style={{ display: "flex", justifyContent: "space-around" }}>

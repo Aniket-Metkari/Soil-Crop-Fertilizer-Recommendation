@@ -48,10 +48,6 @@ export default function CropRecommender() {
             getRecommend(formElements);
     },[data])
 
-    const handleError = (err) => {
-        console.warn(err, " Mainly due to Internet Issue! ");
-    }
-
 
     const getRecommend = (fromElements) =>{
     
@@ -64,7 +60,6 @@ export default function CropRecommender() {
             "pH": Number(fromElements["pH"].value),
             "rainfall": Number(fromElements["rainfall"].value)
         }
-        // console.log(formInput)
 
         axios.post(URL, formInput)
         .then( (response) => {
@@ -78,8 +73,6 @@ export default function CropRecommender() {
         event.preventDefault();
 
         const rtvalue = await fetchTempertureAndHumidity();
-        // console.log("rt-",rtvalue);
-
         setFormElements(event.target.elements);
 
         setData(()=>{
@@ -88,13 +81,7 @@ export default function CropRecommender() {
     }
 
     const handleLocationInfoChange = (event) => {
-        if (event.target.value === "geolocation") {
-            setChooseStateCity(false)
-        } else {
-            setChooseStateCity(true)
-        }
-
-        // console.log(event.target.value)
+            setChooseStateCity(true);
     }
 
     const getAvgTemperatureAndHumidity = async () =>{
@@ -137,24 +124,11 @@ export default function CropRecommender() {
         setLongitude(longitude)
     }
 
-    const options = {
-        enableHighAccuracy: false,
-        timeout: 500000,
-        maximumAge: Infinity
-    }
-
-    const successCallback = (position) => {
-        updateState(position.coords.latitude, position.coords.longitude)
-    }
-    
-    const errorCallback = (error) => {
-        console.log(error)
-    }
 
     const handleStateChange = (event) => {
         setState(event.target.value)
         let checkStates = []
-        LangStates.length != 0 ? checkStates = LangStates : checkStates = states
+        LangStates.length !== 0 ? checkStates = LangStates : checkStates = states
 
         checkStates.forEach((state) => {
             if (state.name === event.target.value) {
@@ -245,7 +219,7 @@ export default function CropRecommender() {
                                     onChange={handleStateChange}
                                     >
                                     {
-                                        LangStates.length != 0 ?
+                                        LangStates.length !== 0 ?
                                             LangStates.map((s) => {
                                                 return <MenuItem value={s.name} key={s.name}>{s.name}</MenuItem>
                                             }) :
@@ -273,7 +247,7 @@ export default function CropRecommender() {
                                         onChange={handleCityChange}
                                         >
                                         {
-                                            LangCities.length != 0 ?
+                                            LangCities.length !== 0 ?
                                                 LangCities.map((c) => {
                                                     return <MenuItem value={c.name} key={c.name}>{c.name}</MenuItem>
                                                 }) : 

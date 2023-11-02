@@ -16,8 +16,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Footer.css";
 import Guide from "./Guide";
-import { GrStatusInfo } from "react-icons/gr";
-import { IconContext } from "react-icons";
+
 
 const Menu = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);

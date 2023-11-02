@@ -1,7 +1,6 @@
 import "./Home.css";
 
 import {
-  Button,
   Card,
   CardActionArea,
   CardContent,
@@ -10,7 +9,6 @@ import {
   Typography,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import Menu from "./Menu";
 import CarouselComponent from "./CarouselComponent";
 import { Link } from "react-router-dom";
 
@@ -25,11 +23,15 @@ export default function Home() {
         spacing={4}
         justifyContent={"center"}
         alignItems={"center"}
-        style={{height:'60vh'}}
+        style={{ height: "60vh" }}
       >
         <Grid item xs={6} sm={4} md={3} key="crop" sx={{}}>
           <Card sx={{ maxWidth: 345 }}>
-            <Link to="/crop-recommender" style={{textDecoration:'none',textAlign:'center'}} justifyContent="center">
+            <Link
+              to="/crop-recommender"
+              style={{ textDecoration: "none", textAlign: "center" }}
+              justifyContent="center"
+            >
               <CardActionArea>
                 <CardMedia
                   component="img"
@@ -39,18 +41,23 @@ export default function Home() {
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
-                    {t('Crop Recommender')}
+                    {t("Crop Recommender")}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                  ></Typography>
                 </CardContent>
               </CardActionArea>
             </Link>
           </Card>
         </Grid>
         <Grid item xs={6} sm={4} md={3} key="fertilizer" sx={{}}>
-          <Card sx={{ maxWidth: 345 }} >
-            <Link to="/fertilizer-recommender" style={{textDecoration:'none',textAlign:'center'}}>
+          <Card sx={{ maxWidth: 345 }}>
+            <Link
+              to="/fertilizer-recommender"
+              style={{ textDecoration: "none", textAlign: "center" }}
+            >
               <CardActionArea>
                 <CardMedia
                   component="img"
@@ -60,10 +67,12 @@ export default function Home() {
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
-                    {t('Fertilizer Recommender')}
+                    {t("Fertilizer Recommender")}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                  ></Typography>
                 </CardContent>
               </CardActionArea>
             </Link>
