@@ -107,10 +107,6 @@ export default function FertilizerRecommender() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!chooseStateCity) {
-      getGeoLocation();
-    }
-
     const rtvalue = await fetchTempertureAndHumidity();
     setFormElements(event.target.elements);
 
