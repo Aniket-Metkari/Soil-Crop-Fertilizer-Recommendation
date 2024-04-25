@@ -1,21 +1,21 @@
-import * as React from "react";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { State, City } from "country-state-city";
 import {
   Alert,
-  Button,
-  TextField,
   Box,
-  Radio,
-  RadioGroup,
+  Button,
   FormControl,
   FormControlLabel,
   FormLabel,
   InputLabel,
   MenuItem,
+  Radio,
+  RadioGroup,
   Select,
+  TextField,
 } from "@mui/material";
+import axios from "axios";
+import { City, State } from "country-state-city";
+import * as React from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import "./FertilizerRecommender.css";
 
@@ -99,6 +99,7 @@ export default function FertilizerRecommender() {
     axios
       .post(URL, formInput)
       .then((response) => {
+        console.log(response.data.fertilizer)
         setFertilizer(response.data.fertilizer);
       })
       .catch((error) => alert(error));

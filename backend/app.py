@@ -1,10 +1,11 @@
-from requests import Response
+import pickle
+
+import numpy as np
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-import pickle
-import numpy as np
+from requests import Response
+# from sklearn.metrics._scorer import PredictScorer
 from sklearn.preprocessing import StandardScaler
-import numpy as np
 
 app = Flask(__name__)
 CORS(app)
@@ -13,7 +14,7 @@ crop_scaler = pickle.load(open('./model/crop_scaler.pkl','rb'))
 model = pickle.load(open('./model/crop_recommendation_model.pkl', 'rb'))
 
 fertilizer_scaler = pickle.load(open('./model/combine_scal.pkl','rb'))
-fertilizer_recommendation_model = pickle.load(open('./model/combine.pkl','rb'))
+fertilizer_recommendation_model = pickle.load(open('./model/fertilizer_recommendation_model_new_12.pkl','rb'))
 
 
 @app.route('/crops', methods = ['POST'])
@@ -49,8 +50,17 @@ def fertilizerRecommender():
     
     # label = fertilizer_recommendation_model_old.predict(finalfeatures)
     predictions = fertilizer_recommendation_model.predict(fertilizer_scaler.transform(features))
-    print(predictions[0])
-    return jsonify({"fertilizer": int(predictions[0])})
+    # print(predictions[0])
+    # return jsonify({"fertilizer": int(predictions[0])})
+    predictions_list = predictions.tolist()
+    first_prediction = int(predictions_list[0][0]*100)
+    # print(first_prediction)
+    print(predictions_list)
+    
+    # Return the list of predictions
+    return jsonify({"fertilizer": first_prediction})
+
+#new Feature
 
 
 app.after_request

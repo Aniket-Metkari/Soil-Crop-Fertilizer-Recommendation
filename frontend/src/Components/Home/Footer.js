@@ -10,7 +10,7 @@ const Footer = () => {
     "Crop Recommender",
     "Fertilizer Recommender",
     "Soil Analysis And Fertilizer Recommendation Using Machine Learning",
-    "BVCOENM"
+    "VIT"
   ];
 
 
